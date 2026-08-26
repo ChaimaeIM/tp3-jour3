@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  mongo1:
+    image: mongo:7.0
+    container_name: mongo1
+    command: mongod --replSet rs0 --bind_ip_all --port 27017 --oplogSize 128
+    ports:
+      - "27017:27017"
+    networks:
+      - rslab
+
+  mongo2:
+    image: mongo:7.0
+    container_name: mongo2
+    command: mongod --replSet rs0 --bind_ip_all --port 27017 --oplogSize 128
+    ports:
+      - "27018:27017"
+    networks:
+      - rslab
+
+  mongo3:
+    image: mongo:7.0
+    container_name: mongo3
+    command: mongod --replSet rs0 --bind_ip_all --port 27017 --oplogSize 128
+    ports:
+      - "27019:27017"
+    networks:
+      - rslab
+
+networks:
+  rslab:
+    driver: bridge
